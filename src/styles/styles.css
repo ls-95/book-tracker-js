@@ -1,0 +1,65 @@
+:root {
+  --card-background: #1a1a1a;
+  --card-input-background: #2a2a2a;
+  --button-background-unread-badge: #3a3a3a;
+  --text-color: #fff;
+  --light-grey: #888;
+  --read-badge: #22c55e;
+  --border-color: #444;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--light-grey);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--card-background);
+  padding: 1em 2em 2em 2em;
+  border-radius: 1em;
+}
+
+input,
+button {
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid var(--border-color);
+}
+
+input {
+  background-color: var(--card-input-background);
+}
+
+input::placeholder {
+  color: var(--light-grey);
+}
+
+button {
+  background-color: var(--page-background);
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 0.5em 0;
+}

@@ -8,6 +8,22 @@
     <title>Book Tracker</title>
   </head>
   <body>
+    <div class="container">
+      <h1>📚 Book Tracker</h1>
+      <div class="add-book-container">
+        <input id="titleInput" type="text" placeholder="Book title" />
+        <input id="authorInput" type="text" placeholder="Author" />
+        <button onclick="addBook()">Add book</button>
+      </div>
+      <div class="btn-books-container">
+        <button onclick="listBooks()">All</button>
+        <button onclick="listUnreadBooks()">Unread</button>
+        <button onclick="listReadBooks()">Read</button>
+      </div>
+      <div class="book-list-container">
+        <ul id="bookList"></ul>
+      </div>
+    </div>
     <script src="src/script/script.js"></script>
   </body>
 </html>
