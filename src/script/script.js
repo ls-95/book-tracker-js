@@ -1,5 +1,6 @@
 const titleInput = document.getElementById("titleInput");
 const authorInput = document.getElementById("authorInput");
+const bookList = document.getElementById("bookList");
 
 let books = [
   {
@@ -46,8 +47,24 @@ function addBook() {
   listBooks();
 }
 
+function listUnreadBooks() {
+  bookList.innerHTML = "";
+  let unreadBooks = books.filter((book) => !book.isRead);
+
+  if (unreadBooks.length > 0) {
+    unreadBooks.forEach((book, index) => {
+      const item = document.createElement("li");
+      item.textContent = `${index + 1}. ${book.title} - ${book.author} (${book.isRead ? "Read" : "Unread"})`;
+      bookList.appendChild(item);
+    });
+  } else {
+    const item = document.createElement("li");
+    item.textContent = "You have no unread books!";
+    bookList.appendChild(item);
+  }
+}
+
 function listBooks() {
-  const bookList = document.getElementById("bookList");
   let number = 0;
   bookList.innerHTML = "";
   books.forEach((book) => {
@@ -57,4 +74,3 @@ function listBooks() {
     bookList.appendChild(item);
   });
 }
-listBooks();
