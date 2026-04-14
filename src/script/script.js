@@ -47,19 +47,27 @@ function addBook() {
   listBooks();
 }
 
-function listUnreadBooks() {
+function bookStatus(status) {
   bookList.innerHTML = "";
-  let unreadBooks = books.filter((book) => !book.isRead);
+  let filteredBooks;
+  if (status === "read") {
+    filteredBooks = books.filter((book) => book.isRead);
+  } else if (status === "unread") {
+    filteredBooks = books.filter((book) => !book.isRead);
+  }
 
-  if (unreadBooks.length > 0) {
-    unreadBooks.forEach((book, index) => {
+  if (filteredBooks.length > 0) {
+    filteredBooks.forEach((book, index) => {
       const item = document.createElement("li");
       item.textContent = `${index + 1}. ${book.title} - ${book.author} (${book.isRead ? "Read" : "Unread"})`;
       bookList.appendChild(item);
     });
   } else {
     const item = document.createElement("li");
-    item.textContent = "You have no unread books!";
+    item.textContent =
+      status === "read"
+        ? "You have no read books!"
+        : "You have no unread books!";
     bookList.appendChild(item);
   }
 }
