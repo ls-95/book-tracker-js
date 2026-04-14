@@ -45,6 +45,7 @@ button {
 
 input {
   background-color: var(--card-input-background);
+  color: var(--text-color);
 }
 
 input::placeholder {

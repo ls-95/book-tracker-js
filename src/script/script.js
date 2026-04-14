@@ -29,6 +29,23 @@ let books = [
   },
 ];
 
+function addBook() {
+  const title = titleInput.value;
+  const author = authorInput.value;
+  if (!title || !author) {
+    alert("Please enter both a title and author!");
+  }
+  books.push({
+    title: title,
+    author: author,
+    isRead: false,
+  });
+
+  titleInput.value = "";
+  authorInput.value = "";
+  listBooks();
+}
+
 function listBooks() {
   const bookList = document.getElementById("bookList");
   let number = 0;
