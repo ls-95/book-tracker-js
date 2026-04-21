@@ -68,11 +68,11 @@ function bookStatus(status) {
       <div class="book-btn">
         ${
           status === "all"
-            ? `<button onclick="changeBookStatus('read')">Read</button>
-               <button onclick="changeBookStatus('unread')">Unread</button>`
+            ? `<button id="readBtn" onclick="changeBookStatus('read', '${book.title}', '${status}')">Read</button>
+               <button id="unreadBtn" onclick="changeBookStatus('unread', '${book.title}', '${status}')">Unread</button>`
             : book.isRead
-              ? `<button onclick="changeBookStatus('unread')">Unread</button>`
-              : `<button onclick="changeBookStatus('read')">Read</button>`
+              ? `<button onclick="changeBookStatus('unread', '${book.title}', '${status}')">Unread</button>`
+              : `<button onclick="changeBookStatus('read', '${book.title}', '${status}')">Read</button>`
         }
 </div>
     </div>
@@ -82,6 +82,13 @@ function bookStatus(status) {
   });
 }
 
-function changeBookStatus(status) {}
+function changeBookStatus(status, title, tab) {
+  let changeStatus = books.find((book) => book.title === title);
+  status === "read"
+    ? (changeStatus.isRead = true)
+    : (changeStatus.isRead = false);
+  console.log(changeStatus.isRead);
+  bookStatus(tab);
+}
 
 bookStatus("all");
