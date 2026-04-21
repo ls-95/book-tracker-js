@@ -30,55 +30,28 @@ let books = [
   },
 ];
 
-function addBook() {
-  const title = titleInput.value;
-  const author = authorInput.value;
-  if (!title || !author) {
-    alert("Please enter both a title and author!");
-  }
-  books.push({
-    title: title,
-    author: author,
-    isRead: false,
-  });
+function addBook() {}
 
-  titleInput.value = "";
-  authorInput.value = "";
-  listBooks();
-}
+function bookStatus(status) {}
 
-function bookStatus(status) {
-  bookList.innerHTML = "";
-  let filteredBooks;
-  if (status === "read") {
-    filteredBooks = books.filter((book) => book.isRead);
-  } else if (status === "unread") {
-    filteredBooks = books.filter((book) => !book.isRead);
-  }
-
-  if (filteredBooks.length > 0) {
-    filteredBooks.forEach((book, index) => {
-      const item = document.createElement("li");
-      item.textContent = `${index + 1}. ${book.title} - ${book.author} (${book.isRead ? "Read" : "Unread"})`;
-      bookList.appendChild(item);
-    });
-  } else {
-    const item = document.createElement("li");
-    item.textContent =
-      status === "read"
-        ? "You have no read books!"
-        : "You have no unread books!";
-    bookList.appendChild(item);
-  }
-}
+function changeBookStatus(status) {}
 
 function listBooks() {
-  let number = 0;
-  bookList.innerHTML = "";
   books.forEach((book) => {
-    const item = document.createElement("li");
-    number++;
-    item.textContent = `${number}. ${book.title} - ${book.author} (${book.isRead ? "Read" : "Unread"})`;
-    bookList.appendChild(item);
+    const ilEl = document.createElement("li");
+    ilEl.innerHTML = `
+    <div class="book-container">
+      <div class="book-info">
+        <span class="list-title">Title</span>: ${book.title}<br /><span class="list-title">Author</span>: ${book.author}<br /><span class="list-title">Status</span>: ${book.isRead ? "Read" : "Not Read"}
+      </div>
+      <div class="book-btn">
+        <button onClick="changeBookStatus('Read')">Finished</button>
+        <button onClick="changeBookStatus('Unread')">Unread</button>
+      </div>
+      
+    </div>
+    `;
+    bookList.appendChild(ilEl);
+    ilEl.classList.add("book");
   });
 }

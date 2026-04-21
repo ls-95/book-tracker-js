@@ -55,6 +55,18 @@ input::placeholder {
 button {
   background-color: var(--page-background);
   color: var(--text-color);
+  cursor: pointer;
+}
+
+button:hover,
+.book-btn > button:hover {
+  background-color: var(--card-input-background);
+}
+
+button:active,
+.book-btn > button:active {
+  position: relative;
+  top: 2px;
 }
 
 ul {
@@ -63,4 +75,35 @@ ul {
 
 li {
   padding: 0.5em 0;
+}
+
+.book {
+  background-color: var(--card-input-background);
+  border: 1px solid var(--border-color);
+  margin: 0.5em 0;
+  padding: 0.5em 0.8em;
+  border-radius: 0.5em;
+  line-height: 1.8;
+}
+
+.book-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.book-btn > button {
+  margin: 0;
+  background-color: var(--card-background);
+}
+
+.list-title {
+  font-weight: 700;
 }
