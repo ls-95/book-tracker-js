@@ -48,7 +48,6 @@ function bookStatus(status) {
   let newBook = books.filter((book) =>
     status === "read" ? book.isRead : status === "unread" ? !book.isRead : book,
   );
-  let btnLabel = status === "unread" ? "Read" : "Unread";
   bookList.innerHTML = "";
   newBook.forEach((book) => {
     const ilEl = document.createElement("li");
@@ -67,9 +66,15 @@ function bookStatus(status) {
         </div>
       </div>
       <div class="book-btn">
-        <button onClick="changeBookStatus('${btnLabel}')">${btnLabel}</button>
-        ${status === "all" ? `<button onClick="changeBookStatus('Unread')">Unread</button>` : ""}
-      </div>
+        ${
+          status === "all"
+            ? `<button onclick="changeBookStatus('read')">Read</button>
+               <button onclick="changeBookStatus('unread')">Unread</button>`
+            : book.isRead
+              ? `<button onclick="changeBookStatus('unread')">Unread</button>`
+              : `<button onclick="changeBookStatus('read')">Read</button>`
+        }
+</div>
     </div>
     `;
     bookList.appendChild(ilEl);
@@ -80,3 +85,8 @@ function bookStatus(status) {
 function changeBookStatus(status) {}
 
 bookStatus("all");
+
+{
+  /* <button onClick="changeBookStatus('${btnLabel}')">${btnLabel}</button>
+        ${status === "all" ? `<button onClick="changeBookStatus('${btnLabel === "read" ? "Unread" : "read"}')">${btnLabel === "read" ? "Unread" : "Read"}</button>` : ""} */
+}
