@@ -16,17 +16,15 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh;
   display: flex;
-  align-items: center;
   color: var(--text-color);
   background-color: var(--light-grey);
+  margin: 5em 0;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   max-width: 650px;
   width: 100%;
   margin: 0 auto;
@@ -92,6 +90,12 @@ li {
   align-items: center;
 }
 
+.book-info {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
 .book-btn {
   display: flex;
   flex-direction: column;
@@ -106,4 +110,13 @@ li {
 
 .list-title {
   font-weight: 700;
+  color: #9ed1fa;
+}
+
+.red {
+  color: #db4e66;
+}
+
+.green {
+  color: #4caf7d;
 }

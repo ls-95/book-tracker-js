@@ -30,19 +30,41 @@ let books = [
   },
 ];
 
-function addBook() {}
+function addBook() {
+  const newBook = {
+    title: `${titleInput.value}`,
+    author: `${authorInput.value}`,
+    isRead: false,
+  };
+  console.log(newBook);
+  books.push(newBook);
+  console.log(books);
+  titleInput.value = "";
+  authorInput.value = "";
+  listBooks();
+}
 
 function bookStatus(status) {}
 
 function changeBookStatus(status) {}
 
 function listBooks() {
+  bookList.innerHTML = "";
   books.forEach((book) => {
     const ilEl = document.createElement("li");
     ilEl.innerHTML = `
     <div class="book-container">
       <div class="book-info">
-        <span class="list-title">Title</span>: ${book.title}<br /><span class="list-title">Author</span>: ${book.author}<br /><span class="list-title">Status</span>: ${book.isRead ? "Read" : "Not Read"}
+        <div>
+          <p class="list-title">Title: </p>
+          <p class="list-title">Author: </p>
+          <p class="list-title">Status: </p>
+        </div>
+        <div>
+          <p>${book.title}</p>
+          <p>${book.author}</p>
+          <p>${book.isRead ? `<span class='green'>Read</span>` : `<span class='red'>Not Read</span>`}</p>
+        </div> 
       </div>
       <div class="book-btn">
         <button onClick="changeBookStatus('Read')">Finished</button>
