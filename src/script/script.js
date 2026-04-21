@@ -85,8 +85,3 @@ function bookStatus(status) {
 function changeBookStatus(status) {}
 
 bookStatus("all");
-
-{
-  /* <button onClick="changeBookStatus('${btnLabel}')">${btnLabel}</button>
-        ${status === "all" ? `<button onClick="changeBookStatus('${btnLabel === "read" ? "Unread" : "read"}')">${btnLabel === "read" ? "Unread" : "Read"}</button>` : ""} */
-}
