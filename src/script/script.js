@@ -11,7 +11,7 @@ let books = [
   {
     title: "Everyone in My Family Has Killed Someone",
     author: "Benjamin Stevenson",
-    isRead: false,
+    isRead: true,
   },
   {
     title: "Everyone on This Train Is a Suspect",
@@ -32,8 +32,8 @@ let books = [
 
 function addBook() {
   const newBook = {
-    title: `${titleInput.value}`,
-    author: `${authorInput.value}`,
+    title: titleInput.value,
+    author: authorInput.value,
     isRead: false,
   };
   console.log(newBook);
@@ -44,7 +44,36 @@ function addBook() {
   listBooks();
 }
 
-function bookStatus(status) {}
+function bookStatus(status) {
+  let newBook = books.filter((book) =>
+    status === "read" ? book.isRead : !book.isRead,
+  );
+  bookList.innerHTML = "";
+  newBook.forEach((book) => {
+    const ilEl = document.createElement("li");
+    ilEl.innerHTML = `
+    <div class="book-container">
+      <div class="book-info">
+        <div>
+          <p class="list-title">Title: </p>
+          <p class="list-title">Author: </p>
+          <p class="list-title">Status: </p>
+        </div>
+        <div>
+          <p>${book.title}</p>
+          <p>${book.author}</p>
+          <p>${book.isRead ? `<span class='green'>Read</span>` : `<span class='red'>Not Read</span>`}</p>
+        </div>
+      </div>
+      <div class="book-btn">
+        <button onClick="changeBookStatus('Read')">Read</button>
+      </div>
+    </div>
+    `;
+    bookList.appendChild(ilEl);
+    ilEl.classList.add("book");
+  });
+}
 
 function changeBookStatus(status) {}
 
@@ -67,7 +96,7 @@ function listBooks() {
         </div> 
       </div>
       <div class="book-btn">
-        <button onClick="changeBookStatus('Read')">Finished</button>
+        <button onClick="changeBookStatus('Read')">Read</button>
         <button onClick="changeBookStatus('Unread')">Unread</button>
       </div>
       
@@ -77,3 +106,5 @@ function listBooks() {
     ilEl.classList.add("book");
   });
 }
+
+listBooks();
