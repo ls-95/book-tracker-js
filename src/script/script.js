@@ -41,13 +41,14 @@ function addBook() {
   console.log(books);
   titleInput.value = "";
   authorInput.value = "";
-  listBooks();
+  bookStatus("all");
 }
 
 function bookStatus(status) {
   let newBook = books.filter((book) =>
-    status === "read" ? book.isRead : !book.isRead,
+    status === "read" ? book.isRead : status === "unread" ? !book.isRead : book,
   );
+  let btnLabel = status === "unread" ? "Read" : "Unread";
   bookList.innerHTML = "";
   newBook.forEach((book) => {
     const ilEl = document.createElement("li");
@@ -66,7 +67,8 @@ function bookStatus(status) {
         </div>
       </div>
       <div class="book-btn">
-        <button onClick="changeBookStatus('Read')">Read</button>
+        <button onClick="changeBookStatus('${btnLabel}')">${btnLabel}</button>
+        ${status === "all" ? `<button onClick="changeBookStatus('Unread')">Unread</button>` : ""}
       </div>
     </div>
     `;
@@ -77,34 +79,4 @@ function bookStatus(status) {
 
 function changeBookStatus(status) {}
 
-function listBooks() {
-  bookList.innerHTML = "";
-  books.forEach((book) => {
-    const ilEl = document.createElement("li");
-    ilEl.innerHTML = `
-    <div class="book-container">
-      <div class="book-info">
-        <div>
-          <p class="list-title">Title: </p>
-          <p class="list-title">Author: </p>
-          <p class="list-title">Status: </p>
-        </div>
-        <div>
-          <p>${book.title}</p>
-          <p>${book.author}</p>
-          <p>${book.isRead ? `<span class='green'>Read</span>` : `<span class='red'>Not Read</span>`}</p>
-        </div> 
-      </div>
-      <div class="book-btn">
-        <button onClick="changeBookStatus('Read')">Read</button>
-        <button onClick="changeBookStatus('Unread')">Unread</button>
-      </div>
-      
-    </div>
-    `;
-    bookList.appendChild(ilEl);
-    ilEl.classList.add("book");
-  });
-}
-
-listBooks();
+bookStatus("all");
